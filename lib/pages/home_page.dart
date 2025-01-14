@@ -15,9 +15,16 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  final List<String> categories = ['General', 'Business', 'Technology', 'Sports', 'Health', 'Entertainment'];
+  final List<String> categories = [
+    'General',
+    'Business',
+    'Technology',
+    'Sports',
+    'Health',
+    'Entertainment'
+  ];
   String selectedCategory = 'General';
-  String searchQuery = '';  // To store the search query
+  String searchQuery = ''; // To store the search query
 
   @override
   void initState() {
@@ -27,21 +34,22 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<void> _fetchNews() async {
     String? location = await LocationService().getUserLocation();
-    ref.read(newsProvider.notifier).fetchNews(location ?? 'us', selectedCategory, searchQuery);  // Pass searchQuery
+    ref.read(newsProvider.notifier).fetchNews(
+        location ?? 'us', selectedCategory, searchQuery); // Pass searchQuery
   }
 
   void _onCategorySelected(String category) {
     setState(() {
       selectedCategory = category;
     });
-    _fetchNews();  // Re-fetch news when category is selected
+    _fetchNews(); // Re-fetch news when category is selected
   }
 
   void _onSearch(String query) {
     setState(() {
       searchQuery = query;
     });
-    _fetchNews();  // Fetch news when a search query is entered
+    _fetchNews(); // Fetch news when a search query is entered
   }
 
   @override
@@ -58,20 +66,26 @@ class _HomePageState extends ConsumerState<HomePage> {
               final query = await showSearch(
                 context: context,
                 delegate: NewsSearchDelegate(
-                  onSearch: _onSearch,  // Pass the search query to the HomePage
+                  onSearch: _onSearch, // Pass the search query to the HomePage
                 ),
               );
               if (query != null && query.isNotEmpty) {
-                _onSearch(query);  // Trigger the search if there's a valid query
+                _onSearch(query); // Trigger the search if there's a valid query
               }
             },
           ),
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: _fetchNews,  // Refresh on pull-down
+        onRefresh: _fetchNews, // Refresh on pull-down
         child: newsList.isEmpty
-            ? const Center(child: CircularProgressIndicator()) // Show loader during fetch
+            ? Center(
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  color: Colors.blue,
+                ),
+              ) // Show loader during fetch
             : Column(
                 children: [
                   // Categories list at the top

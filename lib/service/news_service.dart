@@ -10,6 +10,8 @@ class NewsService {
   }) async {
     // Default location to 'us' if no location is provided
     final defaultLocation = location ?? 'us';
+    print("defalult location: ");
+    print(defaultLocation);
     
     // If a query is provided, use the query-based API endpoint, otherwise fallback to the top headlines
     final url = query != null && query.isNotEmpty
