@@ -79,13 +79,8 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: RefreshIndicator(
         onRefresh: _fetchNews, // Refresh on pull-down
         child: newsList.isEmpty
-            ? Center(
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  color: Colors.blue,
-                ),
-              ) // Show loader during fetch
+            ? const Center(
+                child: CircularProgressIndicator()) // Show loader during fetch
             : Column(
                 children: [
                   // Categories list at the top
