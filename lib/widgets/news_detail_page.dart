@@ -24,7 +24,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
 
   /// Fetch summary using the API service
   Future<void> fetchSummary() async {
-    const apiKey = 'your-openai-api-key'; // Replace with your OpenAI API key
+    const apiKey =
+        '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'; // Replace with your OpenAI API key
 
     if (widget.news.url == null) {
       setState(() {
@@ -35,10 +36,15 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     }
 
     try {
-      final prompt = 'Summarize the following news article in a few sentences: ${widget.news.url}';
+      final prompt =
+          'Summarize the following news article in a few sentences: ${widget.news.url} and use this content: ${widget.news.content}';
       final generatedSummary = await fetchOpenAIResponse(prompt, apiKey);
       setState(() {
+        if(summary == "NA"){
+          summary = "There was a error generating the summary";
+        }else{
         summary = generatedSummary;
+        }
         isLoading = false;
       });
     } catch (e) {
@@ -76,7 +82,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
             // Headline (title)
             Text(
               widget.news.title ?? 'No Title',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
 
@@ -86,7 +92,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
                 const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
                 const SizedBox(width: 5),
                 Text(
-                  widget.news.publishedAt ?? 'No Date',
+                  widget.news.publishedAt ?? DateTime.now().toString(),
                   style: const TextStyle(color: Colors.grey),
                 ),
               ],
@@ -94,15 +100,21 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
             const SizedBox(height: 20),
 
             // Displaying the description or the first paragraph
-            Text(
-              widget.news.description ?? 'No Description Available',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-            ),
+            // Text(
+            //   widget.news.description ?? 'No Description Available',
+            //   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            // ),
             const SizedBox(height: 15),
 
             // AI-generated summary
             isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text("Fetching the summary using AI..."),
+                    ],
+                  ))
                 : Text(
                     summary ?? 'No summary available.',
                     style: const TextStyle(fontSize: 16, height: 1.5),
