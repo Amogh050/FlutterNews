@@ -58,10 +58,19 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News App'),
+        title: const Text(
+          'FlutterNews',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(
+              Icons.search,
+              size: 30,
+            ),
             onPressed: () async {
               final query = await showSearch(
                 context: context,

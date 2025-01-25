@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/model/news_model.dart';
 import 'package:newsapp/service/ai_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsDetailPage extends StatefulWidget {
@@ -24,8 +25,16 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
 
   /// Fetch summary using the API service
   Future<void> fetchSummary() async {
-    const apiKey =
-        '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'; // Replace with your OpenAI API key
+    // Retrieve the API key from the .env file
+    final apiKey = dotenv.env['OPENAI_API_KEY'];
+
+    if (apiKey == null || apiKey.isEmpty) {
+      setState(() {
+        summary = 'API key is missing or not set in the .env file.';
+        isLoading = false;
+      });
+      return;
+    }
 
     if (widget.news.url == null) {
       setState(() {
@@ -40,10 +49,10 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           'Summarize the following news article in a few sentences: ${widget.news.url} and use this content: ${widget.news.content}';
       final generatedSummary = await fetchOpenAIResponse(prompt, apiKey);
       setState(() {
-        if(summary == "NA"){
-          summary = "There was a error generating the summary";
-        }else{
-        summary = generatedSummary;
+        if (summary == "NA") {
+          summary = "There was an error generating the summary.";
+        } else {
+          summary = generatedSummary;
         }
         isLoading = false;
       });
@@ -59,7 +68,22 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.news.title ?? 'Article Details'),
+        title: const Text(
+          'Article Details',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.save,
+              size: 30,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -98,13 +122,6 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
               ],
             ),
             const SizedBox(height: 20),
-
-            // Displaying the description or the first paragraph
-            // Text(
-            //   widget.news.description ?? 'No Description Available',
-            //   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-            // ),
-            const SizedBox(height: 15),
 
             // AI-generated summary
             isLoading
