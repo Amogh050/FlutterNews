@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/model/news_model.dart';
-import 'package:newsapp/widgets/news_detail_page.dart';
+import 'package:flutter_news/model/news_model.dart';
+import 'package:flutter_news/pages/news_detail_page.dart';
 
 class TopNewsCard extends StatelessWidget {
   final NewsModel news;

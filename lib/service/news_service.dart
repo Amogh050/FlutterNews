@@ -1,5 +1,5 @@
+import 'package:flutter_news/model/news_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:newsapp/model/news_model.dart';
 import 'dart:convert';
 
 class NewsService {

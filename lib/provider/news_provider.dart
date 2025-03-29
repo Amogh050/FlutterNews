@@ -1,6 +1,6 @@
+import 'package:flutter_news/model/news_model.dart';
+import 'package:flutter_news/service/news_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/model/news_model.dart';
-import 'package:newsapp/service/news_service.dart';
 
 class NewsNotifier extends StateNotifier<List<NewsModel>> {
   NewsNotifier() : super([]);

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/pages/home_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:newsapp/pages/home_page.dart';
 
 Future<void> main() async {
   // Load the .env file before initializing the app
   await dotenv.load(fileName: ".env");
 
-  // Check if OpenAI API Key is available
-  final openAiApiKey = dotenv.env['OPENAI_API_KEY'];
-  if (openAiApiKey == null || openAiApiKey.isEmpty) {
-    throw Exception("OPENAI_API_KEY is missing or not set in the .env file.");
+  // Check if Gemini API Key is available
+  final geminiApiKey = dotenv.env['GEMINI_API_KEY'];
+  if (geminiApiKey == null || geminiApiKey.isEmpty) {
+    throw Exception("GEMINI_API_KEY is missing or not set in the .env file.");
   }
 
   runApp(const ProviderScope(child: MyApp()));

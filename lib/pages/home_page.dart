@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/provider/news_provider.dart';
+import 'package:flutter_news/service/location_service.dart';
+import 'package:flutter_news/service/search_delegate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapp/provider/news_provider.dart';
-import 'package:newsapp/service/location_service.dart';
-import 'package:newsapp/service/search_delegate.dart';
 import '../widgets/news_item_widget.dart';
 import '../widgets/top_news_card.dart';
 import '../widgets/category_list_widget.dart';

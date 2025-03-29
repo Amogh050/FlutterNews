@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/model/news_model.dart';
-import 'news_detail_page.dart';  // Import the new full-page detail
+import 'package:flutter_news/model/news_model.dart';
+import '../pages/news_detail_page.dart';  // Import the new full-page detail
 
 class NewsItemWidget extends StatelessWidget {
   final NewsModel news;

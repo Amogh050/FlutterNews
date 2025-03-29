@@ -1,6 +1,6 @@
 {
-    "name": "newsapp",
-    "short_name": "newsapp",
+    "name": "flutter_news",
+    "short_name": "flutter_news",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
