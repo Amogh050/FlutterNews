@@ -6,12 +6,10 @@ class NewsService {
   Future<List<NewsModel>> fetchNews({
     String? location,
     String? category,
-    String? query,  // Add query parameter
+    String? query,
   }) async {
-    // Default location to 'us' if no location is provided
     final defaultLocation = location ?? 'us';
     
-    // If a query is provided, use the query-based API endpoint, otherwise fallback to the top headlines
     final url = query != null && query.isNotEmpty
         ? 'https://newsapi.org/v2/everything?q=$query&apiKey=624ded5cb027418f95b90697ce027958'
         : category != null

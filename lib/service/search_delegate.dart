@@ -11,7 +11,7 @@ class NewsSearchDelegate extends SearchDelegate {
       IconButton(
         icon: const Icon(Icons.clear),
         onPressed: () {
-          query = '';  // Clear the query
+          query = '';
         },
       ),
     ];
@@ -22,16 +22,15 @@ class NewsSearchDelegate extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, null);  // Close the search
+        close(context, null);
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // Instead of calling onSearch() here, close the search and handle it afterward
-    close(context, query);  // Pass the query back and close the search
-    return const SizedBox.shrink();  // No UI required here
+    close(context, query);
+    return const SizedBox.shrink();
   }
 
   @override

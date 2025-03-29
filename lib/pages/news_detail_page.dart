@@ -3,7 +3,7 @@ import 'package:flutter_news/model/news_model.dart';
 import 'package:flutter_news/service/ai_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:intl/intl.dart'; // Import for date formatting
+import 'package:intl/intl.dart';
 
 class NewsDetailPage extends StatefulWidget {
   final NewsModel news;

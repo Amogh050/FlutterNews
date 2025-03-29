@@ -4,10 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
-  // Load the .env file before initializing the app
   await dotenv.load(fileName: ".env");
 
-  // Check if Gemini API Key is available
   final geminiApiKey = dotenv.env['GEMINI_API_KEY'];
   if (geminiApiKey == null || geminiApiKey.isEmpty) {
     throw Exception("GEMINI_API_KEY is missing or not set in the .env file.");
