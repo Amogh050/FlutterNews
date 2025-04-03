@@ -8,16 +8,21 @@ FlutterNews is a  **Flutter** application that fetches and displays news article
 
 ## 🎯 Features
 ✅ Fetches real-time news from an API 🌎
+
 ✅ Supports multiple news categories 🏷️
+
 ✅ Location-based news filtering 📍
+
 ✅ Gemini AI integration for news summarization 🤖
+
 ✅ Interactive and responsive UI 🎨
+
 ✅ Dark Mode Support 🌙
 
 ## 🔧 Technologies Used
-- **Flutter** (Latest)
+- **Flutter**
 - **Dart**
-- **News API** (or any other API)
+- **News API**
 - **Gemini AI** (for summarization)
 - **Riverpod** (State Management)
 
